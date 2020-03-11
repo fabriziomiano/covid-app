@@ -1,0 +1,108 @@
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5">
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/national">National</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/regional">Regional</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/provincial">Provincial</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+
+    <h1 class="mb-4" align="center">{{ title }}</h1>
+    {% if pagetype == "home" %}
+    <h2 class="mb-4" align="center">A tool to visualize Coronavirus pandemic</h2> 
+    <h3 class="mb-4" align="center">Use the menu on the left to visualize national / regional / provincial data</h3> 
+    {% endif %}
+
+    {% if pagetype != "home" %}
+        <form action="/{{ action }}">
+            <div class="container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><b>Select dates</b></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            {% if pagetype != "national" %}
+                            <div class='col-md-4'>
+                            {% else %}
+                            <div class='col-md-6'>
+                            {% endif %}
+                                <div class="form-group">
+                                    <label class="control-label">From</label>
+                                    <div class='input-group date' id='date_from'>
+                                        <input type='text' class="form-control" name='date_from'>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if pagetype != "national" %}
+                            <div class='col-md-4'>
+                            {% else %}
+                            <div class='col-md-6'>
+                            {% endif %}
+                                <div class="form-group">
+                                    <label class="control-label">To</label>
+                                    <div class='input-group date' id='date_to'>
+                                        <input type='text' class="form-control" name='date_to'>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if pagetype != "national" %}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {% if territory %}
+                                        <label class="control-label">{{ territory }} (returns national results if blank)</label>
+                                        {% if territory == "Region" %}
+                                            <input type="text" class="form-control" name="territory" id="territory" placeholder="e.g. Lombardia">
+                                        {% else %}
+                                            <input type="text" class="form-control" name="territory" id="territory" placeholder="e.g. MI">
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </div>
+            </div>
+            {% if plot %}
+                <div class="img-container" align="center">
+                    <img src="data:image/jpeg;base64,{{ plot }}">
+                </div>
+            {% endif %}
+            {% if error %}
+                <h2 align="center"><b><font color="red">{{ error }}</font></b></h2>
+            {% endif %}
+        </form>
+    {% endif %}
+
+</div>
