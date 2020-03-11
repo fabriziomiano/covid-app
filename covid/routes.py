@@ -11,10 +11,8 @@ def home():
     return render_template(
         "layout.html",
         title="COVID-19 Outbreak in Italy",
-        description=(
-            "A simple overview of the current situation. "
-            "Use the navbar to explore the data"
-        ),
+        subtitle="A tool to visualize Coronavirus pandemic",
+        helper="Use the menu to visualize national / regional / provincial data",
         pagetype="home"
     )
 
