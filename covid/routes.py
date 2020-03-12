@@ -58,6 +58,7 @@ def regional():
                 data = get_overview(date_from, date_to)
                 plot = plot_overview(data)
             else:
+                region = region.capitalize()
                 data = get_overview(date_from, date_to, region)
                 if not data:
                     error = "No data for the selected region: {}".format(region)
@@ -96,6 +97,7 @@ def provincial():
                 data = get_overview(date_from, date_to)
                 plot = plot_overview(data)
             else:
+                province = province.upper()
                 data = get_province_data(date_from, date_to, province)
                 if not data:
                     error = "No data for the selected province: {}".format(province)
