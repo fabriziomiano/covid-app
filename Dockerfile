@@ -8,9 +8,9 @@ ADD . /code/
 
 # ssh
 ENV SSH_PASSWD "root:Docker!"
-ENV NATIONAL_URL <URL>
-ENV REGIONAL_URL <URL>
-ENV PROVINCIAL_URL <URL>
+ENV NATIONAL_URL "https://covidfunc.azurewebsites.net/api/national"
+ENV REGIONAL_URL "https://covidfunc.azurewebsites.net/api/regional"
+ENV PROVINCIAL_URL "https://covidfunc.azurewebsites.net/api/provincial"
 RUN apt-get update \
     && apt-get install -y --no-install-recommends openssh-server \
 	&& echo "$SSH_PASSWD" | chpasswd
