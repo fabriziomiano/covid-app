@@ -75,8 +75,7 @@ def plot_overview(data, territory=""):
         plt.sca(ax)
         plt.xticks(rotation=45)
         plt.xticks(size=6)
-    for ax in axs.flat:
-        ax.label_outer()
+    plt.tight_layout()
     # TODO: Make it concurrent-safe:
     #  use datetime and uuid() to serve the right plot to the right client
     figfile = BytesIO()
@@ -100,7 +99,8 @@ def plot_total_in_province(data, province=""):
     for ax in fig.axes:
         plt.sca(ax)
         plt.xticks(rotation=45)
-        plt.xticks(size=6)
+        plt.xticks(size=8)
+    plt.tight_layout()
     figfile = BytesIO()
     plt.savefig(figfile, format='png', dpi=120)
     figfile.seek(0)
